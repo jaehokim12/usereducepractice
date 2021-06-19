@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState, useReducer } from 'react';
+import { indexInitialState, indexReducer } from './indexReducer';
 function App() {
+  const [state, dispatch] = useReducer(indexReducer, indexInitialState);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>{state.text}</h1>
+      <h2>{state.count}</h2>
+      <button
+        onClick={() => {
+          dispatch({ type: 'changeTokor' });
+          console.log(state);
+        }}
+      >
+        한글
+      </button>
+      <button
+        onClick={() => {
+          dispatch({ type: 'changeToEng' });
+          console.log(state);
+        }}
+      >
+        english
+      </button>
+      <button
+        onClick={() => {
+          dispatch({ type: 'minusCount' });
+          console.log(state);
+        }}
+      >
+        -
+      </button>
+      <button
+        onClick={() => {
+          dispatch({ type: 'plusCount' });
+        }}
+      >
+        +
+      </button>
     </div>
   );
 }
-
 export default App;
